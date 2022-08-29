@@ -4,8 +4,21 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
+  const text: String = 'This is my first typescript variable'
+
   return (
-    <div>This is my first time using next.js and adding text</div>
+    <>
+    <h1>This is my first typeScript form</h1>
+    <form>
+      <label>Name:
+      <input placeholder='john'></input>
+      </label>
+      <label>Email:
+        <input placeholder='john@doe.com'></input>
+      </label>
+    </form>
+
+    </>
     // <div className={styles.container}>
     //   <Head>
     //     <title>Create Next App</title>
