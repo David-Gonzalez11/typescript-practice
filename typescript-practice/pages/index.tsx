@@ -9,6 +9,17 @@ let ids: number[]= [1,2,3,4,5,6]
 console.log(ids)
 let names: string [] = ['Danny', 'Tim','David']
 console.log("names", names)
+let person: {
+  name: string,
+  location: string,
+  isHired: boolean
+}
+person = {
+  name: "Danny",
+  location: "USA",
+  isHired: true
+}
+console.log(person)
   return (
     <>
 
