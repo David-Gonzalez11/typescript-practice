@@ -7,6 +7,8 @@ const Home: NextPage = () => {
   const text: String = 'This is my first typescript variable'
 let ids: number[]= [1,2,3,4,5,6]
 console.log(ids)
+let names: string [] = ['Danny', 'Tim','David']
+console.log("names", names)
   return (
     <>
 
