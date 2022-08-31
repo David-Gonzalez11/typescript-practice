@@ -5,10 +5,12 @@ import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
   const text: String = 'This is my first typescript variable'
-
+let ids: number[]= [1,2,3,4,5,6]
+console.log(ids)
   return (
     <>
-    <h1>This is my first typeScript form</h1>
+
+    {/* <h1>This is my first typeScript form</h1>
     <form>
       <label>Name:
       <input placeholder='john'></input>
@@ -16,7 +18,7 @@ const Home: NextPage = () => {
       <label>Email:
         <input placeholder='john@doe.com'></input>
       </label>
-    </form>
+    </form> */}
 
     </>
     // <div className={styles.container}>
