@@ -1,29 +1,37 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import React, { useState } from "react";
 
 const Home: NextPage = () => {
-  const text: String = 'This is my first typescript variable'
-let ids: number[]= [1,2,3,4,5,6]
-console.log(ids)
-let names: string [] = ['Danny', 'Tim','David']
-console.log("names", names)
-let person: {
-  name: string,
-  location: string,
-  isHired: boolean
-}
-person = {
-  name: "Danny",
-  location: "USA",
-  isHired: true
-}
-console.log(person)
+  const text: String = "This is my first typescript variable";
+  let ids: number[] = [1, 2, 3, 4, 5, 6];
+  console.log(ids);
+  let names: string[] = ["Danny", "Tim", "David"];
+  console.log("names", names);
+  let person: {
+    name: string;
+    location: string;
+    isHired: boolean;
+  };
+  person = {
+    name: "Danny",
+    location: "USA",
+    isHired: true,
+  };
+  console.log(person);
+  const [count, setCount] = useState(0)
+
+
   return (
     <>
-
-    {/* <h1>This is my first typeScript form</h1>
+<div className="counter-block">
+  <h3>This is the count: {count}</h3>
+  <button onClick={() => setCount(count + 1)}>Increment +</button> <hr />
+  <button onClick={() => setCount(count - 1)}>Decrement -</button>
+</div>
+      {/* <h1>This is my first typeScript form</h1>
     <form>
       <label>Name:
       <input placeholder='john'></input>
@@ -32,7 +40,6 @@ console.log(person)
         <input placeholder='john@doe.com'></input>
       </label>
     </form> */}
-
     </>
     // <div className={styles.container}>
     //   <Head>
@@ -95,7 +102,7 @@ console.log(person)
     //     </a>
     //   </footer>
     // </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
