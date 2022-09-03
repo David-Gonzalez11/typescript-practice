@@ -5,16 +5,14 @@ import styles from "../styles/Home.module.css";
 import React, { useState } from "react";
 import david from "./Img.Container";
 
-const Home: NextPage = (res: any) => {
-  const handleClick: any =  (event: any) => {
+const Home = (res: any) => {
+  async function handleClick(event: any) {
 
 fetch('https://random.dog/woof.json')
-.then(res => (console.log(res)))
-// .then(data => console.log(data))
+.then(res => (console.log(res.json())))
   }
 
   return (
-
     <>
   <header>
     <div className="row header">
