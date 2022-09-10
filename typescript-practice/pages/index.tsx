@@ -7,7 +7,7 @@ import Header from "./api/header";
 import { FaPaw } from "react-icons/fa";
 
 const Home = (res: any) => {
-  const [image, handleImage] = useState('')
+  const [image, handleImage] = useState('https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png')
   function handleClick(res: any): any {
     const fetchPromise = fetch("https://random.dog/woof.json")
     fetchPromise.then(response => {
@@ -33,7 +33,6 @@ const Home = (res: any) => {
         </div>
         <div data-view="home-page" className="row image-container">
           <img
-
             src={image}
             className="image"
             id="photoUrl"
