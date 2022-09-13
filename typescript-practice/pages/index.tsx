@@ -6,12 +6,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaPaw } from "react-icons/fa";
 
 const Home = (res: any) => {
-  const [id, setId] = useState(1)
-  const [data, setData] = useState({id: id});
-
-useEffect(() => {
-  localStorage.setItem('favorites', JSON.stringify(data));
-}, [data]);
+  const [id, setId] = useState(1);
 
   const [image, handleImage] = useState(
     "https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png"
@@ -25,24 +20,34 @@ useEffect(() => {
       .then((data) => handleImage(data.url));
   }
 
-  const savedEntries = (): any =>{
-let favoriteObject: any = {
-  id: id,
-  photoUrl: image
-}
-  }
+  const savedEntries = (): any => {
+    let favoriteObject: any = {
+      id: id,
+      photoUrl: image,
+    };
+  };
 
 
+   const [data, setData] = useState({ id: id, photoUrl: image });
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(data));
+  }, [data]);
 
   return (
     <>
       <header>
-    <div className="row header">
-      <h1>Dog Generator<a className="home" href="/">Home</a>
-       <a className="favorites-link" href="/favorites">Favorites</a>
-</h1>
-    </div>
-  </header>
+        <div className="row header">
+          <h1>
+            Dog Generator
+            <a className="home" href="/">
+              Home
+            </a>
+            <a className="favorites-link" href="/favorites">
+              Favorites
+            </a>
+          </h1>
+        </div>
+      </header>
       <div className="container">
         <div className="row generate-img">
           <div className="generate-img">
@@ -65,7 +70,6 @@ let favoriteObject: any = {
         </div>
       </div>
     </>
-
   );
 };
 
