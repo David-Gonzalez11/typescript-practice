@@ -7,7 +7,7 @@ import { FaPaw } from "react-icons/fa";
 
 const Home = (res: any) => {
   const [id, setId] = useState(1)
-  const [data, setData] = useState({id: id, name:'hello'});
+  const [data, setData] = useState({id: id});
 
 useEffect(() => {
   localStorage.setItem('favorites', JSON.stringify(data));
