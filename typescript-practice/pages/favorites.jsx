@@ -1,6 +1,5 @@
 import Home from "./index";
-  import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-  import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+var FA = require('react-fontawesome')
 
 import { useState, useEffect } from "react";
 const Favorites = (props) => {
@@ -11,7 +10,7 @@ const Favorites = (props) => {
     if (items) {
       setItems(items);
     }
-    console.log("value of url", items[1].photoUrl);
+    console.log("value of url", items.photoUrl);
   }, []);
   return (
     <>
@@ -29,8 +28,8 @@ const Favorites = (props) => {
         <h2 className="favorites-view-text hidden">Favorites</h2>
         <div data-view="favorites" className="favorites hidden row">
           <form className="form">
-            {/* <div className="column text-align">
-              <img className="dom-image" src={items.photoUrl} />
+            <div className="column text-align">
+              <img className="dom-image" src='https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png'/>
             </div>
             <h2 className="text-align">NOTES:</h2>
             <div>
@@ -38,23 +37,16 @@ const Favorites = (props) => {
                 <textarea className="text-area"></textarea>
                 <div>
                 <button className="save-btn">Save</button>
+                <i>Trash Icon</i>
                 </div>
               </div>
               <div>
+              </div>
+            </div>
 
-              </div> */}
-              {/* <input type="submit" className="save-btn hidden" id="button" value="SAVE"/> */}
-            {/* </div> */}
           </form>
         </div>
       </div>
-      {/* <div id="overlay" className="hidden overlay">
-       <div id="modal" className="hidden">
-         <h4>Are you sure you want to delete this entry?</h4>
-         <a id="confirm-modal" className="confirm-modal">CONFIRM</a>
-         <a id="close-modal-btn" className="close-modal-btn">CANCEL</a>
-       </div>
-     </div> */}
     </>
   );
 };
