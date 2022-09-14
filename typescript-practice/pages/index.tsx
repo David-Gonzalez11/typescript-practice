@@ -7,6 +7,11 @@ import { FaPaw } from "react-icons/fa";
 
 const Home = (res: any) => {
   const [id, setId] = useState(1);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    window.localStorage.setItem("favorites", JSON.stringify(data));
+  }, [data]);
 
   const [image, handleImage] = useState(
     "https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png"
@@ -19,19 +24,14 @@ const Home = (res: any) => {
       })
       .then((data) => handleImage(data.url));
   }
-
   const savedEntries = (): any => {
     let favoriteObject: any = {
       id: id,
       photoUrl: image,
     };
+    console.log(favoriteObject);
+    setData([favoriteObject, ...data]);
   };
-
-
-   const [data, setData] = useState({ id: id, photoUrl: image });
-  useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(data));
-  }, [data]);
 
   return (
     <>
@@ -62,8 +62,8 @@ const Home = (res: any) => {
         </div>
         <div data-view="home-page" className="row image-container">
           <img src={image} className="image" id="photoUrl" />
-          <a href="favorites">
-            <i onClick={savedEntries()}>
+          <a>
+            <i onClick={savedEntries}>
               <FaPaw />
             </i>
           </a>

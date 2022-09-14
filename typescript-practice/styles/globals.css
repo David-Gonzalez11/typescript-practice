@@ -163,7 +163,7 @@ li {
   font-family: serif;
   cursor: pointer;
   border-style: none;
-  margin-right: 23%;
+  /* margin-right: 23%; */
 }
 
 .favorites-view-text {
