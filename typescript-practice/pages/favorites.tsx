@@ -1,8 +1,13 @@
 import Header from "./Header";
 import { useState, useEffect } from "react";
+import { FaTrash } from "react-icons/fa";
 const Favorites = () => {
   const [items, setItems] = useState([]);
-
+  const [notes, saveNotes] = useState('')
+  const onChange = (e: any) => {
+        saveNotes(e.target.value);
+        console.log(notes);
+    }
   useEffect(() => {
     const localStore: any = localStorage.getItem("favorites");
     const storedItems = JSON.parse(localStore);
@@ -13,6 +18,10 @@ const Favorites = () => {
     console.log("stored Items", storedItems);
     console.log("value of url", storedItems.photoUrl);
   }, []);
+  //  function submitHandler(e: any) {
+  //   e.preventDefault();
+  //   console.log('working')
+  // }
   return (
     <div>
       <Header />
@@ -24,63 +33,23 @@ const Favorites = () => {
             <div data-view="favorites" className="favorites row">
               <form className="form">
                 <div className="column text-align">
-                  <img src="" />
-                  <h2>Notes:</h2>
-                  <p>Favorite Created:</p>
-
-                  <textarea></textarea>
-                  <div>
-                    <button className="save-btn">save</button>
-                    <button className="save-btn">trash</button>
-                  </div>
-                </div>
-                <div className="column text-align">
                   <img src={img.photoUrl} />
                   <h2>Notes:</h2>
-                  <p>Favorite Created:{img.date}</p>
-                  <textarea></textarea>
+                  <p id="date">Favorite Created:{img.date}</p>
+
+                  <textarea value={notes} onChange={onChange}>{notes}</textarea>
                   <div>
                     <button className="save-btn">save</button>
-                    <button className="save-btn">trash</button>
+                    <FaTrash className="icon-red"/>
                   </div>
                 </div>
+
               </form>
             </div>
           </div>
         </>
       ))}
     </div>
-    // <>
-    //   <Header />
-    //   <div>
-    //     <h2 className="favorites-view-text hidden">Favorites</h2>
-    //     <div data-view="favorites" className="favorites hidden row">
-    //       <form className="form">
-    //         <div className="column text-align">
-    //           <img src=""/>
-    //           <h2>Notes:</h2>
-    //           <p>Favorite Created:</p>
-
-    //           <textarea></textarea>
-    //           <div>
-    //             <button className="save-btn">save</button>
-    //             <button className="save-btn">trash</button>
-    //           </div>
-    //         </div>
-    //         <div className="column text-align">
-    //           <img src={items.photoUrl} />
-    //           <h2>Notes:</h2>
-    //           <p>Favorite Created:</p>
-    //           <textarea></textarea>
-    //           <div>
-    //             <button className="save-btn">save</button>
-    //             <button className="save-btn">trash</button>
-    //           </div>
-    //         </div>
-    //       </form>
-    //     </div>
-    //   </div>
-    // </>
   );
 };
 export default Favorites;

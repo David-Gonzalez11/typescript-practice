@@ -28,7 +28,7 @@ const Home = () => {
     let favoriteObject: any | null = {
       id: id,
       photoUrl: image,
-      date: new Date().toISOString()
+      date: new Date().toString()
     };
     console.log(favoriteObject);
     setData([favoriteObject, ...data]);
