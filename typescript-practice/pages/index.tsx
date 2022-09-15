@@ -25,7 +25,7 @@ const Home = () => {
       .then((data) => handleImage(data.url));
   }
   const savedEntries = (): any => {
-    let favoriteObject: any | null = {
+    let favoriteObject = {
       id: id,
       photoUrl: image,
       date: new Date().toString()
