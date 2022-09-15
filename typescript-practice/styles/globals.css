@@ -260,11 +260,16 @@ h4 {
 h5 {
   color: red;
 }
-
+/* these below are new styles used in rebuild */
 #date {
   font-size: small;
+  font-weight: 400;
 }
-
+.icon-red{
+  color: red;
+  position: relative;
+  left: 4rem
+}
 .lds-spinner {
   color: official;
   display: inline-block;
