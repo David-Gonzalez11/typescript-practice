@@ -163,7 +163,7 @@ li {
   font-family: serif;
   cursor: pointer;
   border-style: none;
-  margin-right: 23%;
+  /* margin-right: 23%; */
 }
 
 .favorites-view-text {
@@ -268,7 +268,7 @@ h5 {
 .icon-red{
   color: red;
   position: relative;
-  left: 4rem
+  left: 2rem
 }
 .lds-spinner {
   color: official;

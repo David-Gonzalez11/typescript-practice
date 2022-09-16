@@ -1,12 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
+// import styles from "../styles/Home.module.css";
 import React, { useState, useEffect, useRef } from "react";
 import { FaPaw } from "react-icons/fa";
 import Header from "./Header";
 const Home = () => {
-  const [id, setId] = useState(1);
+  const [id, setId] = useState(0);
   const [data, setData] = useState([]);
 
   useEffect(() => {

@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 import { FaTrash } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-// import "bootstrap/dist/css/bootstrap.min.css";
-  const Favorites = () => {
+import "bootstrap/dist/css/bootstrap.min.css";
+const Favorites = () => {
   const [items, setItems] = useState([]);
   const [notes, saveNotes] = useState();
-
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   useEffect(() => {
     const localStore: any = localStorage.getItem("favorites");
     const storedItems = JSON.parse(localStore);
@@ -27,7 +29,7 @@ import Modal from "react-bootstrap/Modal";
     const newItems = [...items];
     newItems.splice(index, 1);
     setItems(newItems);
-    console.log(index)
+    console.log(index);
   };
 
   // on Change for user value
@@ -36,32 +38,7 @@ import Modal from "react-bootstrap/Modal";
     console.log(notes);
   };
 
-  const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  // return (
-  //   <>
-  //     <Button variant="primary" onClick={handleShow}>
-  //       Delete Entry
-  //     </Button>
-  //     <Modal show={show} onHide={handleClose}>
-  //       <Modal.Header closeButton>
-  //         <Modal.Title>Confirmation</Modal.Title>
-  //       </Modal.Header>
-  //       <Modal.Body>Are you sure you want to delete this favorite?</Modal.Body>
-  //       <Modal.Footer>
-  //         <Button variant="secondary" onClick={handleClose}>
-  //           Close
-  //         </Button>
-  //         <Button variant="primary" onClick={handleClose}>
-  //           Delete
-  //         </Button>
-  //       </Modal.Footer>
-  //     </Modal>
-  //   </>
-  // );
 
   const noData = setItems === null ? "No entries recorded" : "Favorites";
   return (
@@ -77,7 +54,7 @@ import Modal from "react-bootstrap/Modal";
                 <div className="column text-align">
                   <img src={img.photoUrl} />
                   <h2>Notes:</h2>
-                  <p id="date">Favorite Created:{img.date}</p>
+                  <p id="date">Favorite Created: {img.date}</p>
 
                   <textarea value={notes} onChange={onChange}>
                     {notes}
@@ -89,27 +66,27 @@ import Modal from "react-bootstrap/Modal";
                     /> */}
                     {/* <Example className="icon-red"
                       onClick={() => handleDelete(index)}/> */}
-                       <Button variant="primary" onClick={handleShow}>
-        Delete Entry
-      </Button>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Confirmation</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Are you sure you want to delete this favorite?</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            <span onClick={() => handleDelete(index)}>
-            Delete
-
-            </span>
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
+                    <FaTrash onClick={handleShow} className="icon-red">
+                      Delete Entry
+                    </FaTrash>
+                    <Modal show={show} onHide={handleClose}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Confirmation</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        Are you sure you want to delete this favorite?
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                          Close
+                        </Button>
+                        <Button variant="danger" onClick={handleClose}>
+                          <span onClick={() => handleDelete(index)}>
+                            Delete
+                          </span>
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
                   </div>
                 </div>
               </form>
@@ -121,3 +98,24 @@ import Modal from "react-bootstrap/Modal";
   );
 };
 export default Favorites;
+// return (
+//   <>
+//     <Button variant="primary" onClick={handleShow}>
+//       Delete Entry
+//     </Button>
+//     <Modal show={show} onHide={handleClose}>
+//       <Modal.Header closeButton>
+//         <Modal.Title>Confirmation</Modal.Title>
+//       </Modal.Header>
+//       <Modal.Body>Are you sure you want to delete this favorite?</Modal.Body>
+//       <Modal.Footer>
+//         <Button variant="secondary" onClick={handleClose}>
+//           Close
+//         </Button>
+//         <Button variant="primary" onClick={handleClose}>
+//           Delete
+//         </Button>
+//       </Modal.Footer>
+//     </Modal>
+//   </>
+// );
