@@ -109,11 +109,11 @@ img {
   justify-content: center;
 }
 
-i {
+/* i {
   position: relative;
   cursor: pointer;
   right: 2rem;
-}
+} */
 
 .clicked {
   color: lightblue;

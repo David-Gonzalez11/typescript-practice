@@ -1,17 +1,16 @@
 import Header from "./Header";
 import { useState, useEffect } from "react";
 import { FaTrash } from "react-icons/fa";
-
-const Favorites = () => {
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+// import "bootstrap/dist/css/bootstrap.min.css";
+  const Favorites = () => {
   const [items, setItems] = useState([]);
-  const [notes, saveNotes] = useState()
-  const onChange = (e: any) => {
-        saveNotes(e.target.value);
-        console.log(notes);
-    }
+  const [notes, saveNotes] = useState();
+
   useEffect(() => {
     const localStore: any = localStorage.getItem("favorites");
-    const storedItems= JSON.parse(localStore);
+    const storedItems = JSON.parse(localStore);
     if (storedItems && items.length === 0) {
       setItems(storedItems);
     }
@@ -23,15 +22,52 @@ const Favorites = () => {
   //   e.preventDefault();
   //   console.log('working')
   // }
-  const handleDelete  = (index: number) => {
-const newItems = [...items]
-newItems.splice(index,1)
-setItems(newItems)
-  }
+
+  const handleDelete = (index: number) => {
+    const newItems = [...items];
+    newItems.splice(index, 1);
+    setItems(newItems);
+    console.log(index)
+  };
+
+  // on Change for user value
+  const onChange = (e: any) => {
+    saveNotes(e.target.value);
+    console.log(notes);
+  };
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  // return (
+  //   <>
+  //     <Button variant="primary" onClick={handleShow}>
+  //       Delete Entry
+  //     </Button>
+  //     <Modal show={show} onHide={handleClose}>
+  //       <Modal.Header closeButton>
+  //         <Modal.Title>Confirmation</Modal.Title>
+  //       </Modal.Header>
+  //       <Modal.Body>Are you sure you want to delete this favorite?</Modal.Body>
+  //       <Modal.Footer>
+  //         <Button variant="secondary" onClick={handleClose}>
+  //           Close
+  //         </Button>
+  //         <Button variant="primary" onClick={handleClose}>
+  //           Delete
+  //         </Button>
+  //       </Modal.Footer>
+  //     </Modal>
+  //   </>
+  // );
+
+  const noData = setItems === null ? "No entries recorded" : "Favorites";
   return (
     <div>
       <Header />
-      <h2 className="favorites-view-text hidden">Favorites</h2>
+      <h2 className="favorites-view-text hidden">{noData}</h2>
 
       {items.map((img, index) => (
         <>
@@ -43,13 +79,39 @@ setItems(newItems)
                   <h2>Notes:</h2>
                   <p id="date">Favorite Created:{img.date}</p>
 
-                  <textarea value={notes} onChange={onChange}>{notes}</textarea>
+                  <textarea value={notes} onChange={onChange}>
+                    {notes}
+                  </textarea>
                   <div>
                     <button className="save-btn">save</button>
-                    <FaTrash className="icon-red" onClick={() => handleDelete(index)}/>
+                    {/* <FaTrash
+
+                    /> */}
+                    {/* <Example className="icon-red"
+                      onClick={() => handleDelete(index)}/> */}
+                       <Button variant="primary" onClick={handleShow}>
+        Delete Entry
+      </Button>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this favorite?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            <span onClick={() => handleDelete(index)}>
+            Delete
+
+            </span>
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
                   </div>
                 </div>
-
               </form>
             </div>
           </div>

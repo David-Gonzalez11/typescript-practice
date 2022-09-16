@@ -39,6 +39,7 @@ const Home = () => {
 
   return (
     <>
+
       <Header />
       <div className="container">
         <div className="row generate-img">
