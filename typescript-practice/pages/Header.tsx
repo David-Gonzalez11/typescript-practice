@@ -1,15 +1,22 @@
+import Link from "next/link"
+
 const Header = () => {
   return (
    <header>
         <div className="row header">
           <h1>
             Dog Generator
-            <a className="home" href="/">
+            <Link href="/">
+            <a className="home">
               Home
             </a>
-            <a className="favorites-link" href="/favorites">
+            </Link>
+            <Link href="/favorites">
+               <a className="favorites-link">
               Favorites
             </a>
+            </Link>
+
           </h1>
         </div>
       </header>

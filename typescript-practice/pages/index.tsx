@@ -25,21 +25,23 @@ const Home = () => {
       .then((data) => handleImage(data.url));
   }
   const savedEntries = (): any => {
-    let favoriteObject = {
+    let favoriteObject: any = {
       id: id,
       photoUrl: image,
-      date: new Date().toString()
+      date: new Date().toString(),
+      notes: ''
     };
     console.log(favoriteObject);
     setData([favoriteObject, ...data]);
-    setId(id + 1)
-    alert("You saved a favorite!")
-    handleImage('https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png')
+    setId(id + 1);
+    alert("You saved a favorite!");
+    handleImage(
+      "https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png"
+    );
   };
 
   return (
     <>
-
       <Header />
       <div className="container">
         <div className="row generate-img">
@@ -53,7 +55,7 @@ const Home = () => {
             </button>
           </div>
         </div>
-        <div  className="row image-container">
+        <div className="row image-container">
           <img src={image} className="image" id="photoUrl" />
           <a>
             <i onClick={savedEntries}>

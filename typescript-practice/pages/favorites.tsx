@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { FaTrash } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 const Favorites = () => {
   const [items, setItems] = useState([]);
   const [notes, saveNotes] = useState();
@@ -17,21 +17,15 @@ const Favorites = () => {
       setItems(storedItems);
     }
 
-    console.log("stored Items", storedItems);
-    console.log("value of url", storedItems.photoUrl);
+    // console.log("stored Items", storedItems);
+    // console.log("value of url", storedItems.photoUrl);
   }, []);
-  //  function submitHandler(e: any) {
-  //   e.preventDefault();
-  //   console.log('working')
-  // }
-
   const handleDelete = (index: number) => {
     const newItems = [...items];
     newItems.splice(index, 1);
     setItems(newItems);
     console.log(index);
   };
-
   // on Change for user value
   const onChange = (e: any) => {
     saveNotes(e.target.value);
@@ -45,7 +39,6 @@ const Favorites = () => {
     <div>
       <Header />
       <h2 className="favorites-view-text hidden">{noData}</h2>
-
       {items.map((img, index) => (
         <>
           <div key={index}>
@@ -62,7 +55,6 @@ const Favorites = () => {
                   <div>
                     <button className="save-btn">save</button>
                     {/* <FaTrash
-
                     /> */}
                     {/* <Example className="icon-red"
                       onClick={() => handleDelete(index)}/> */}
@@ -98,24 +90,3 @@ const Favorites = () => {
   );
 };
 export default Favorites;
-// return (
-//   <>
-//     <Button variant="primary" onClick={handleShow}>
-//       Delete Entry
-//     </Button>
-//     <Modal show={show} onHide={handleClose}>
-//       <Modal.Header closeButton>
-//         <Modal.Title>Confirmation</Modal.Title>
-//       </Modal.Header>
-//       <Modal.Body>Are you sure you want to delete this favorite?</Modal.Body>
-//       <Modal.Footer>
-//         <Button variant="secondary" onClick={handleClose}>
-//           Close
-//         </Button>
-//         <Button variant="primary" onClick={handleClose}>
-//           Delete
-//         </Button>
-//       </Modal.Footer>
-//     </Modal>
-//   </>
-// );
