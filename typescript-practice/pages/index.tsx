@@ -48,7 +48,6 @@ const Home = () => {
           <div className="generate-img">
             <button
               className="bigbutton"
-              // onLoad={handleClick}
               onClick={handleClick}
             >
               Get Random Dog Image
