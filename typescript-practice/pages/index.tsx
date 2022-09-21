@@ -5,9 +5,11 @@ import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
 import { FaPaw } from "react-icons/fa";
 import Header from "./Header";
+import { Favorites} from '../interfaces';
+
 const Home = () => {
   const [id, setId] = useState(0);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Favorites[]>([]);
 
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(data));
@@ -24,8 +26,8 @@ const Home = () => {
       })
       .then((data) => handleImage(data.url));
   }
-  const savedEntries = (): any => {
-    let favoriteObject: any = {
+  const savedEntries = () => {
+    let favoriteObject: Favorites = {
       id: id,
       photoUrl: image,
       date: new Date().toString(),
