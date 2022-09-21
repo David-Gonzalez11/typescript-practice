@@ -65,7 +65,7 @@ const Favorites = () => {
       <h2 className="favorites-view-text hidden">{noData}</h2>
       <form className="form">
       {items.map((item, index) => (
-        <div key={item.id} id={item.id}>
+        <div key={item.id}>
           <div data-view="favorites" className="favorites row">
               <div className="column text-align">
                 <img src={item.photoUrl} />
