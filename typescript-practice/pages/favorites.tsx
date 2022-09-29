@@ -1,7 +1,6 @@
+// import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./Header";
 import React, { useState, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-
 import { FaTrash } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -27,7 +26,7 @@ const Favorites = () => {
     const newItems = [...items];
     console.log("newItems", newItems);
 
-    const indexToDelete = newItems.findIndex((item) => item.id === id);
+    const indexToDelete = newItems.filter((item) => item.id === id);
     console.log("value of id", id);
     console.log(indexToDelete);
 
@@ -83,23 +82,22 @@ const Favorites = () => {
                   </button>
 
                   <FaTrash onClick={handleShow} className="icon-red">
-                    Delete Entry
                   </FaTrash>
-                  <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>Confirmation</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
+                  <Modal show={show} onHide={handleClose} id="modal" className="overlay">
+                    {/* <Modal.Header closeButton> */}
+                      {/* <Modal.Title className="icon-red">Confirmation</Modal.Title> */}
+                    {/* </Modal.Header> */}
+                    <Modal.Body className="modal-title-btn">
                       Are you sure you want to delete this favorite?
                     </Modal.Body>
                     <Modal.Footer>
-                      <Button variant="secondary" onClick={handleClose}>
+                      <Button variant="secondary" onClick={handleClose} className="close-modal-btn">
                         Close
                       </Button>
                       <Button
                         variant="danger"
                         onClick={() => handleDelete(item.id)}
-                      >
+                      className="confirm-modal" >
                         Delete
                       </Button>
                     </Modal.Footer>
