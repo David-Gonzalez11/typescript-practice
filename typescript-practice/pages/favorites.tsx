@@ -21,17 +21,28 @@ const Favorites = () => {
     // console.log("stored Items", storedItems[2].id);
     // console.log("value of url", storedItems[2].photoUrl);
   }, []);
-  const handleDelete = (id: number) => {
-    const newItems = [...items];
-    console.log("newItems", newItems);
-    const indexToDelete = newItems.findIndex((item) => item.id === id);
-    newItems.splice(indexToDelete, 1);
-    console.log(indexToDelete)
-    setItems(newItems);
-    handleClose();
+  // const handleDelete = (id: number) => {
+  //   const newItems = [...items];
+  //   console.log("newItems", newItems);
+  //   const indexToDelete = newItems.findIndex((item) => item.id === id);
+  //   console.log('valuie of index to delete', indexToDelete)
+  //   newItems.splice(indexToDelete, 1);
+  //   console.log(indexToDelete)
+  //   setItems(newItems);
+  //   handleClose();
+  // };
+
+   const deleteItem = (index: number) => {
+    setItems((prevState) => {
+      let items = [...prevState];
+      items.splice(index, 1);
+      return items;
+
+    });
+      handleClose();
+
   };
   const onUpdateNote = (index: number) => (e: React.SyntheticEvent) => {
-    // console.log(index, e.target.value);
     const updatedItems = items.map((item: Favorites) => {
       if (item.id === index) {
         return { ...item, notes: e.target.value };
@@ -44,7 +55,6 @@ const Favorites = () => {
     }
   };
 
-  // on Change for user value
   const onSave = (index: number) => (e: React.SyntheticEvent) => {
     e.preventDefault();
     localStorage.setItem("favorites", JSON.stringify(items));
@@ -74,9 +84,7 @@ const Favorites = () => {
                   <FaTrash onClick={handleShow} className="icon-red">
                   </FaTrash>
                   <Modal show={show} onHide={handleClose} id="modal" className="overlay">
-                    {/* <Modal.Header closeButton> */}
-                      {/* <Modal.Title className="icon-red">Confirmation</Modal.Title> */}
-                    {/* </Modal.Header> */}
+
                     <Modal.Body className="modal-title-btn">
                       Are you sure you want to delete this favorite?
                     </Modal.Body>
@@ -86,8 +94,8 @@ const Favorites = () => {
                       </Button>
                       <Button
                         variant="danger"
-                        onClick={() => handleDelete(item.id)}
-                      className="confirm-modal" >
+                        onClick={() => deleteItem(item.id)}
+                        className="confirm-modal" >
                         Delete
                       </Button>
                     </Modal.Footer>
