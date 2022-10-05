@@ -5,7 +5,6 @@ import { FaTrash } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Favorites } from "../interfaces";
-import { log } from "console";
 
 const Favorites = () => {
   const [items, setItems] = useState<Favorites[]>([]);
@@ -25,21 +24,14 @@ const Favorites = () => {
   const handleDelete = (id: number) => {
     const newItems = [...items];
     console.log("newItems", newItems);
-
-    const indexToDelete = newItems.filter((item) => item.id === id);
-    console.log("value of id", id);
-    console.log(indexToDelete);
-
-    console.log("index del", indexToDelete);
-
+    const indexToDelete = newItems.findIndex((item) => item.id === id);
     newItems.splice(indexToDelete, 1);
+    console.log(indexToDelete)
     setItems(newItems);
-
-    // console.log('Values of newItems',newItems)
     handleClose();
   };
   const onUpdateNote = (index: number) => (e: React.SyntheticEvent) => {
-    console.log(index, e.target.value);
+    // console.log(index, e.target.value);
     const updatedItems = items.map((item: Favorites) => {
       if (item.id === index) {
         return { ...item, notes: e.target.value };
@@ -58,11 +50,9 @@ const Favorites = () => {
     localStorage.setItem("favorites", JSON.stringify(items));
   };
 
-  const noData = setItems === null ? "No entries recorded" : "Favorites";
   return (
     <div>
       <Header />
-      <h2 className="favorites-view-text hidden">{noData}</h2>
       <form className="form">
         {items.map((item, index) => (
           <div key={item.id}>
