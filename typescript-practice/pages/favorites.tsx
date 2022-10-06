@@ -36,10 +36,12 @@ const Favorites = () => {
     setItems((prevState) => {
       let items = [...prevState];
       items.splice(index, 1);
+      setItems(items)
       return items;
 
     });
       handleClose();
+
 
   };
   const onUpdateNote = (index: number) => (e: React.SyntheticEvent) => {
