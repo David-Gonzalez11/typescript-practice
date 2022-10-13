@@ -5,6 +5,7 @@ import { FaTrash } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Favorites } from "../interfaces";
+import Image from "next/image";
 
 const Favorites = () => {
   const [items, setItems] = useState<Favorites[]>([]);
@@ -17,33 +18,19 @@ const Favorites = () => {
     if (storedItems && items.length === 0) {
       setItems(storedItems);
     }
-
-    // console.log("stored Items", storedItems[2].id);
-    // console.log("value of url", storedItems[2].photoUrl);
   }, []);
-  // const handleDelete = (id: number) => {
-  //   const newItems = [...items];
-  //   console.log("newItems", newItems);
-  //   const indexToDelete = newItems.findIndex((item) => item.id === id);
-  //   console.log('valuie of index to delete', indexToDelete)
-  //   newItems.splice(indexToDelete, 1);
-  //   console.log(indexToDelete)
-  //   setItems(newItems);
-  //   handleClose();
-  // };
-
-   const deleteItem = (index: number) => {
-    setItems((prevState) => {
-      let items = [...prevState];
-      items.splice(index, 1);
-      setItems(items)
-      return items;
-
-    });
-      handleClose();
-
-
+  const handleDelete = (id: number) => {
+    const newItems = [...items];
+    console.log("value of newitens", newItems);
+    console.log("newItems", newItems);
+    const indexToDelete = newItems.findIndex((item) => item.id === id);
+    console.log("valuie of index to delete", indexToDelete);
+    newItems.splice(indexToDelete, 1);
+    console.log(indexToDelete);
+    setItems(newItems);
+    handleClose();
   };
+
   const onUpdateNote = (index: number) => (e: React.SyntheticEvent) => {
     const updatedItems = items.map((item: Favorites) => {
       if (item.id === index) {
@@ -83,21 +70,29 @@ const Favorites = () => {
                     save
                   </button>
 
-                  <FaTrash onClick={handleShow} className="icon-red">
-                  </FaTrash>
-                  <Modal show={show} onHide={handleClose} id="modal" className="overlay">
-
+                  <FaTrash onClick={handleShow} className="icon-red"></FaTrash>
+                  <Modal
+                    show={show}
+                    onHide={handleClose}
+                    id="modal"
+                    className="overlay"
+                  >
                     <Modal.Body className="modal-title-btn">
                       Are you sure you want to delete this favorite?
                     </Modal.Body>
                     <Modal.Footer>
-                      <Button variant="secondary" onClick={handleClose} className="close-modal-btn">
+                      <Button
+                        variant="secondary"
+                        onClick={handleClose}
+                        className="close-modal-btn"
+                      >
                         Close
                       </Button>
                       <Button
                         variant="danger"
-                        onClick={() => deleteItem(item.id)}
-                        className="confirm-modal" >
+                        onClick={() => handleDelete(item.id)}
+                        className="confirm-modal"
+                      >
                         Delete
                       </Button>
                     </Modal.Footer>
