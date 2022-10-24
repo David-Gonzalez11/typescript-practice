@@ -5,7 +5,7 @@ import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
 import { FaPaw } from "react-icons/fa";
 import Header from "./Header";
-import { Favorites} from '../interfaces';
+import { Favorites } from "../interfaces";
 
 const Home = () => {
   const [id, setId] = useState(0);
@@ -31,7 +31,7 @@ const Home = () => {
       id: id,
       photoUrl: image,
       date: new Date().toString(),
-      notes: ''
+      notes: "",
     };
     console.log(favoriteObject);
     setData([favoriteObject, ...data]);
@@ -48,10 +48,7 @@ const Home = () => {
       <div className="container">
         <div className="row generate-img">
           <div className="generate-img">
-            <button
-              className="bigbutton"
-              onClick={handleClick}
-            >
+            <button className="bigbutton" onClick={handleClick}>
               Get Random Dog Image
             </button>
           </div>
