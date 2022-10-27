@@ -6,6 +6,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaPaw } from "react-icons/fa";
 import Header from "./Header";
 import { Favorites } from "../interfaces";
+import axios from "axios";
 
 const Home = () => {
   const [id, setId] = useState(0);
@@ -19,12 +20,13 @@ const Home = () => {
     "https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png"
   );
   function handleClick(): any {
-    const fetchPromise = fetch("https://random.dog/woof.json");
+    const fetchPromise = axios.get("https://random.dog/woof.json");
     fetchPromise
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => handleImage(data.url));
+      // .then((response) => {
+      //   return response.json();
+      // })
+      .then(({ data }) => handleImage(data.url))
+      .catch((error) => console.error(error));
   }
   const savedEntries = () => {
     let favoriteObject: Favorites = {
